@@ -3,15 +3,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 import os
 
-from models.base import Base
-from models.armazenamento import Armazenamento
-from models.categoria import Categoria
-from models.ficha_tecnica import FichaTecnica
-from models.insumo import Insumo
-from models.modo_preparo import ModoPreparo
-from models.porcao import Porcao
-from models.precificacao import Precificacao
-
+from app.models.base import Base
 
 db_path = "database/"
 if not os.path.exists(db_path):
