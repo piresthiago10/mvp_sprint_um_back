@@ -1,5 +1,5 @@
 from sqlalchemy import Table, Column, ForeignKey
-from app.models import Base
+from app.models.base import Base
 
 evento_participante = Table(
     "evento_participante",

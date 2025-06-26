@@ -13,7 +13,7 @@ class Participante:
         self.db.add(participante)
         self.db.commit()
         self.db.refresh(participante)
-        return participante
+        return participante.id
 
     def listar(self) -> list[participante_model]:
         """Listar todos os participantes."""

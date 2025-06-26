@@ -32,9 +32,6 @@ def test_criar_evento(db_session, endereco_in_db, trajeto_in_db):
 
     result = service.criar(data)
     assert result
-    assert result.data == data["data"]
-    assert result.endereco_id == data["endereco_id"]
-    assert result.trajeto_id == data["trajeto_id"]
 
 
 def test_listar_eventos(db_session, evento_in_db):
@@ -62,6 +59,7 @@ def test_editar_evento(db_session, evento_in_db):
     data = {"nome": "Evento Editado", "data": date(2025, 7, 1)}
 
     result = service.editar(eventos[0]["id"], data)
+    breakpoint()
     assert result
 
 

@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, constr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Annotated
 from datetime import date
 
@@ -24,3 +24,5 @@ class ParticipanteBase(BaseModel):
         description="Data de nascimento do participante", example="1999-01-01"
     )
     endereco: EnderecoBase = Field(description="Endereco do participante")
+    
+    model_config = ConfigDict(from_attributes=True)

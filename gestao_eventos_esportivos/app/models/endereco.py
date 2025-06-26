@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String
 
-from app.models import Base
+from app.models.base import Base
 
 # from app.models.evento import Evento
 from app.models.participante import Participante
