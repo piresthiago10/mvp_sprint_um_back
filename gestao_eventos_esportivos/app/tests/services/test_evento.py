@@ -40,7 +40,9 @@ def test_listar_eventos(test_db_session, evento_in_db):
         assert result
 
 
-def test_obter_evento_completo(test_db_session, evento_in_db, endereco_in_db, trajeto_in_db):
+def test_obter_evento_completo(
+    test_db_session, evento_in_db, endereco_in_db, trajeto_in_db
+):
     """Testa a listagem de um evento por id."""
     with test_db_session.no_autoflush:
         service = evento_service(test_db_session, evento_model)

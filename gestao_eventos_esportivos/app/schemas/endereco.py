@@ -5,7 +5,9 @@ from pydantic import BaseModel, ConfigDict, Field, constr
 class EnderecoBase(BaseModel):
     """Define como um endereco será representado."""
 
-    logradouro: str = Field(description="Logradouro", example="logradouro", max_length=100)
+    logradouro: str = Field(
+        description="Logradouro", example="logradouro", max_length=100
+    )
     numero: str = Field(description="Numero", example="123", max_length=10)
     complemento: str = Field(description="Complemento", exemple="Casa", max_length=50)
     bairro: str = Field(description="Bairro", example="Centro", max_length=50)

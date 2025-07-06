@@ -30,11 +30,12 @@ class Evento:
                 {
                     "id": item.id,
                     "nome": item.nome,
-                    "data": item.data.strftime('%d/%m/%Y'),
+                    "data": item.data.strftime("%d/%m/%Y"),
                     "trajeto_id": item.trajeto_id,
-                    "endereco_id": item.endereco_id
+                    "endereco_id": item.endereco_id,
                 }
-            ).model_dump() for item in results
+            ).model_dump()
+            for item in results
         ]
 
     def obter_evento_completo(self, id: int) -> evento_model:
@@ -60,7 +61,7 @@ class Evento:
         return {
             "id": result.id,
             "nome": result.nome,
-            "data": result.data.strftime('%d/%m/%Y'),
+            "data": result.data.strftime("%d/%m/%Y"),
             "endereco": {
                 "id": result.endereco.id,
                 "logradouro": result.endereco.logradouro,
@@ -69,13 +70,13 @@ class Evento:
                 "bairro": result.endereco.bairro,
                 "cidade": result.endereco.cidade,
                 "estado": result.endereco.estado,
-                "cep": result.endereco.cep
-                         },
+                "cep": result.endereco.cep,
+            },
             "trajeto": {
                 "id": result.trajeto.id,
                 "nome": result.trajeto.nome,
                 "nivel_dificuldade": result.trajeto.nivel_dificuldade,
                 "altimetria": result.trajeto.altimetria,
-                "rota_imagem_link": result.trajeto.rota_imagem_link
-            }
+                "rota_imagem_link": result.trajeto.rota_imagem_link,
+            },
         }

@@ -19,16 +19,21 @@ Os eventos podem abranger diferentes modalidades, como caminhadas, passeios cicl
 * SQLAlchemy
 
 ## Modo de uso:
+1. Crie e ative o ambiente virtual
+```
+python3 -m venv venv
 
-1. Instale os requisitos
+source venv/bin/activate 
+```
+2. Instale os requisitos
 ```
 pip install -r requirements.txt   
 ```
-2. Execute o projeto
+3. Execute o projeto
 ```
 python3 main.py 
 ```
-3. Consuma as rotas em:
+4. Consuma as rotas em:
 ```
 http://127.0.0.1:5000/openapi/swagger#/
 ```

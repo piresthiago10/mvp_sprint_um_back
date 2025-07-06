@@ -6,8 +6,8 @@ from app.schemas.evento import (
     EventoPath,
     EventoBase,
     EventoCriacaoResponse,
-    EventoListagemResponse
-    )
+    EventoListagemResponse,
+)
 from app.schemas.error import ErrorSchema
 
 from app.models.evento import Evento as evento_model
@@ -52,11 +52,13 @@ def post_evento(body: EventoBase):
     except Exception as e:
         return {"message": str(e)}, 400
 
+
 @evento_bp.get("/todos", responses={200: EventoListagemResponse})
 def get_evento():
     """Listar todos os eventos."""
     evento_svc = evento_service(db_session, evento_model)
     return {"eventos": evento_svc.listar()}, 200
+
 
 @evento_bp.get("/<int:id>", responses={200: EventoBase, 400: ErrorSchema})
 def get_evento_completo(path: EventoPath):
@@ -66,7 +68,8 @@ def get_evento_completo(path: EventoPath):
         return evento_svc.obter_evento_completo(path.id), 200
     except Exception as e:
         return {"message": str(e)}, 400
-    
+
+
 @evento_bp.put("/<int:id>", responses={200: SuccessMessage, 400: ErrorSchema})
 def altera_evento_completo(path: EventoPath, body: EventoBase):
     """Altera um evento."""
@@ -76,14 +79,15 @@ def altera_evento_completo(path: EventoPath, body: EventoBase):
         evento_svc = evento_service(db_session, evento_model)
         endereco_svc = endereco_service(db_session, endereco_model)
         evento_completo = evento_svc.obter_evento_completo(path.id)
-        
+
         endereco_svc.editar(evento_completo["endereco"]["id"], data["endereco"])
         trajeto_svc.editar(evento_completo["trajeto"]["id"], data["trajeto"])
         evento_svc.editar(path.id, {"nome": data["nome"], "data": data["data"]})
         return {"message": "Evento alterado com sucesso"}, 200
     except Exception as e:
         return {"message": str(e)}, 400
-    
+
+
 @evento_bp.delete("/<int:id>", responses={200: SuccessMessage, 400: ErrorSchema})
 def excluir_evento(path: EventoPath):
     """Excluir evento."""

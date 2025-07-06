@@ -22,4 +22,3 @@ if not database_exists(engine.url):
 Session = sessionmaker(bind=engine)
 
 Base.metadata.create_all(engine)
-
