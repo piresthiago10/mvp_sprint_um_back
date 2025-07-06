@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session, joinedload
 from app.models.evento import Evento as evento_model
+from app.schemas.evento import EventoListagem
 
 
 class Evento:
@@ -13,18 +14,28 @@ class Evento:
         self.db = data_base
         self.model = model
 
-    def criar(self, data: dict) -> evento_model:
+    def criar(self, data: dict) -> int:
         """Criar um novo evento."""
         evento = self.model(**data)
         self.db.add(evento)
         self.db.commit()
         self.db.refresh(evento)
-        return evento
+        return evento.id
 
     def listar(self) -> list[evento_model]:
         """Listar todos os eventos."""
         results = self.db.query(self.model).all()
-        return [item.__dict__ for item in results]
+        return [
+            EventoListagem.model_validate(
+                {
+                    "id": item.id,
+                    "nome": item.nome,
+                    "data": item.data.strftime('%d/%m/%Y'),
+                    "trajeto_id": item.trajeto_id,
+                    "endereco_id": item.endereco_id
+                }
+            ).model_dump() for item in results
+        ]
 
     def obter_evento_completo(self, id: int) -> evento_model:
         """Obtem evento com todos os dados incluindo trajeto e endereço."""

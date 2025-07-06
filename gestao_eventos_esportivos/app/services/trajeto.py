@@ -13,7 +13,7 @@ class Trajeto:
         self.db.add(trajeto)
         self.db.commit()
         self.db.refresh(trajeto)
-        return trajeto
+        return trajeto.id
 
     def listar(self) -> list[trajeto_model]:
         """Listar todos os trajetos."""

@@ -13,7 +13,7 @@ class Endereco:
         self.db.add(endereco)
         self.db.commit()
         self.db.refresh(endereco)
-        return endereco
+        return endereco.id
 
     def listar(self) -> list[endereco_model]:
         """Listar todos os enderecos."""

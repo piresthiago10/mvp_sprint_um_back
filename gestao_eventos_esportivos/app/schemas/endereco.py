@@ -1,11 +1,11 @@
-from typing import Annotated
-from pydantic import BaseModel, Field, constr
+from typing import Annotated, Optional
+from pydantic import BaseModel, ConfigDict, Field, constr
 
 
 class EnderecoBase(BaseModel):
     """Define como um endereco será representado."""
 
-    lograduro: str = Field(description="Logradouro", example="logradouro", max_length=100)
+    logradouro: str = Field(description="Logradouro", example="logradouro", max_length=100)
     numero: str = Field(description="Numero", example="123", max_length=10)
     complemento: str = Field(description="Complemento", exemple="Casa", max_length=50)
     bairro: str = Field(description="Bairro", example="Centro", max_length=50)
@@ -15,5 +15,4 @@ class EnderecoBase(BaseModel):
     )
     cep: str = Field(description="Cep", exemple="12345678", max_length=8)
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)

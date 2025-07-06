@@ -4,8 +4,8 @@ from sqlalchemy.orm import Session
 from app.models.evento import Evento
 
 
-@pytest.fixture(scope="function")
-def evento_in_db(db_session: Session):
+@pytest.fixture
+def evento_in_db(test_db_session: Session):
     """Fixture para criar três eventos no banco de dados para os testes."""
 
     eventos = [
@@ -29,8 +29,8 @@ def evento_in_db(db_session: Session):
         ),
     ]
 
-    with db_session.begin():
-        db_session.add_all(eventos)
-    db_session.commit()
+    with test_db_session.begin():
+        test_db_session.add_all(eventos)
+    test_db_session.commit()
 
     return eventos
