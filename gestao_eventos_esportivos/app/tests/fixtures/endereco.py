@@ -3,8 +3,8 @@ from sqlalchemy.orm import Session
 from app.models.endereco import Endereco
 
 
-@pytest.fixture(scope="function")
-def endereco_in_db(db_session: Session):
+@pytest.fixture
+def endereco_in_db(test_db_session: Session):
     """Fixture para criar três endereços no banco de dados para os testes."""
     enderecos = [
         Endereco(
@@ -36,8 +36,8 @@ def endereco_in_db(db_session: Session):
         ),
     ]
 
-    with db_session.begin():
-        db_session.add_all(enderecos)
-    db_session.commit()
+    with test_db_session.begin():
+        test_db_session.add_all(enderecos)
+    test_db_session.commit()
 
     return enderecos

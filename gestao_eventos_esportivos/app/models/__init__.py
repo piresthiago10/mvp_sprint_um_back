@@ -12,7 +12,6 @@ if not os.path.exists(db_path):
 from app.models.endereco import Endereco
 from app.models.trajeto import Trajeto
 from app.models.evento import Evento
-from app.models.participante import Participante
 
 db_url = "sqlite:///%s/db.sqlite3" % db_path
 engine = create_engine(db_url, echo=False)

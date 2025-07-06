@@ -1,8 +1,6 @@
 import pytest
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, clear_mappers
-from sqlalchemy.orm import scoped_session
-from sqlalchemy.pool import StaticPool
+from sqlalchemy.orm import sessionmaker
 
 from app.models.base import Base
 
@@ -17,7 +15,7 @@ def engine():
 
 
 @pytest.fixture(scope="function")
-def db_session(engine):
+def test_db_session(engine):
     connection = engine.connect()
     transaction = connection.begin()
     SessionLocal = sessionmaker(bind=connection)

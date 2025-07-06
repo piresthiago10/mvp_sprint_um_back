@@ -3,8 +3,8 @@ from sqlalchemy.orm import Session
 from app.models.trajeto import Trajeto
 
 
-@pytest.fixture(scope="function")
-def trajeto_in_db(db_session: Session):
+@pytest.fixture
+def trajeto_in_db(test_db_session: Session):
     """Fixture para criar três trajetos no banco de dados para os testes."""
     trajetos = [
         Trajeto(
@@ -27,8 +27,8 @@ def trajeto_in_db(db_session: Session):
         ),
     ]
 
-    with db_session.begin():
-        db_session.add_all(trajetos)
-    db_session.commit()
+    with test_db_session.begin():
+        test_db_session.add_all(trajetos)
+    test_db_session.commit()
 
     return trajetos

@@ -16,7 +16,3 @@ class EnderecoBase(BaseModel):
     cep: str = Field(description="Cep", exemple="12345678", max_length=8)
 
     model_config = ConfigDict(from_attributes=True)
-    
-class EnderecoBaseUpdate(EnderecoBase):
-    """Define como um endereco será atualizado."""
-    id: int = Field(description="Id do endereco", example=1)

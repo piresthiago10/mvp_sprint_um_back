@@ -25,9 +25,17 @@ class Evento:
     def listar(self) -> list[evento_model]:
         """Listar todos os eventos."""
         results = self.db.query(self.model).all()
-        for item in results:
-            item.data = item.data.strftime('%d/%m/%Y')
-        return [EventoListagem.model_validate(item).model_dump() for item in results]
+        return [
+            EventoListagem.model_validate(
+                {
+                    "id": item.id,
+                    "nome": item.nome,
+                    "data": item.data.strftime('%d/%m/%Y'),
+                    "trajeto_id": item.trajeto_id,
+                    "endereco_id": item.endereco_id
+                }
+            ).model_dump() for item in results
+        ]
 
     def obter_evento_completo(self, id: int) -> evento_model:
         """Obtem evento com todos os dados incluindo trajeto e endereço."""

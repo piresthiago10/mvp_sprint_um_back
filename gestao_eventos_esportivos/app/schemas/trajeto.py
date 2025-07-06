@@ -12,7 +12,4 @@ class TrajetoBase(BaseModel):
         description="Link da imagem da rota", example="https://example.com/rota1.jpg")
 
     model_config = ConfigDict(from_attributes=True)
-    
-class TrajetoBaseUpdate(TrajetoBase):
-    """Define como um trajeto sera atualizado."""
-    id: int = Field(description="Id do trajeto", example=1)
+

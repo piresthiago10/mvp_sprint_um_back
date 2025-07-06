@@ -1,9 +1,9 @@
 from pydantic import BaseModel, Field, ConfigDict
 from datetime import date
-from typing import List, Optional
+from typing import List
 
-from app.schemas.endereco import EnderecoBase, EnderecoBaseUpdate
-from app.schemas.trajeto import TrajetoBase, TrajetoBaseUpdate
+from app.schemas.endereco import EnderecoBase
+from app.schemas.trajeto import TrajetoBase
 
 
 class EventoBase(BaseModel):
@@ -17,13 +17,6 @@ class EventoBase(BaseModel):
     endereco: EnderecoBase = Field(description="Endereco do evento")
 
     model_config = ConfigDict(from_attributes=True)
-
-class EventoBaseUpdate(EventoBase):
-    id: int = Field(description="Id do evento", example=1)
-    nome: str = Field(description="Nome do evento", example="Caminhada pela saúde", max_length=140)
-    data: date = Field(description="Data do evento", example="2022-02-02")
-    trajeto: TrajetoBaseUpdate = Field(description="Trajeto do evento")
-    endereco: EnderecoBaseUpdate = Field(description="Endereco do evento")
 
 class EventoCriacaoResponse(BaseModel):
     """Define como será retornado a resposta da criação do evento."""
