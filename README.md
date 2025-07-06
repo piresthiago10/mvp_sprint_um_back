@@ -23,10 +23,6 @@ Os eventos podem abranger diferentes modalidades, como caminhadas, passeios cicl
 ```
 python3 -m venv venv
 
-1. Crie e ative o ambiente virtual
-```
-python3 -m venv venv
-
 source venv/bin/activate 
 ```
 2. Instale os requisitos
