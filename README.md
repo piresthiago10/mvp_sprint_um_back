@@ -6,7 +6,7 @@ Este é um projeto backend desenvolvido com o objetivo de ser uma API responsáv
 
 Os eventos podem abranger diferentes modalidades, como caminhadas, passeios ciclísticos, corridas e outras atividades esportivas.
 
-![Imagem do aplicativo](https://example.com/logo.png)
+![Imagem do aplicativo](sprint_1.png)
 
 ## Integrantes
 
